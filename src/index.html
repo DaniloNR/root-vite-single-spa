@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="importmap-type" content="importmap-shim" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: http: blob: data: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https: localhost:*; object-src 'none';"
+    />
+
+    <title>Root</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.9/runtime.min.js"></script>
+    <script
+      async
+      src="https://ga.jspm.io/npm:es-module-shims@1.5.4/dist/es-module-shims.js"
+    ></script>
+
+    <script type="esms-options">
+      {
+        "shimMode": true,
+        "mapOverrides": true
+      }
+    </script>
+
+    <!-- "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.3/lib/system/single-spa.min.js",
+  "vue": "https://cdn.jsdelivr.net/npm/vue@3.2.37/dist/vue.global.prod.js",
+  "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@4.0.14/dist/vue-router.global.prod.js",
+  "single-spa-vue": "https://cdn.jsdelivr.net/npm/single-spa-vue@2.5.1/dist/umd/single-spa-vue.min.js", -->
+    {{#if isLocal}}
+    <link
+      href="{{ VITE_MF_VUE_1_DOMAIN }}assets/style.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+      href="{{ VITE_MF_VUE_2_DOMAIN }}assets/style.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+      href="{{ VITE_MF_REACT_DOMAIN }}assets/style.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+
+    <script type="importmap-shim" defer>
+      {
+        "imports": {
+          "@vite-single-spa/root-config": "/root-config.ts",
+          "@vite-single-spa/vue1": "{{ VITE_MF_VUE_1_DOMAIN }}vite-single-spa-vue.ts",
+          "@vite-single-spa/vue2": "{{ VITE_MF_VUE_2_DOMAIN }}vite-single-spa-vue.ts",
+          "@vite-single-spa/react": "{{ VITE_MF_REACT_DOMAIN }}vite-single-spa-react.tsx"
+        }
+      }
+    </script>
+    {{else}}
+    <link
+      rel="preload"
+      href="{{ VITE_MF_VUE_1_DOMAIN_PROD }}assets/style.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+      rel="preload"
+      href="{{ VITE_MF_VUE_2_DOMAIN_PROD }}assets/style.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+      rel="preload"
+      href="{{ VITE_MF_REACT_DOMAIN_PROD }}assets/style.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+
+    <script type="importmap-shim" defer>
+      {
+        "imports": {
+          "vue": "https://cdn.jsdelivr.net/npm/vue@3.2.37/dist/vue.esm-browser.prod.js",
+          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.3/lib/esm/single-spa.min.js",
+          "@vite-single-spa/root-config": "/root-config.js",
+          "@vite-single-spa/vue1": "{{ VITE_MF_VUE_1_DOMAIN_PROD }}vite-single-spa-vue.js",
+          "@vite-single-spa/vue2": "{{ VITE_MF_VUE_2_DOMAIN_PROD }}vite-single-spa-vue.js",
+          "@vite-single-spa/react": "{{ VITE_MF_REACT_DOMAIN_PROD }}vite-single-spa-react.js"
+        }
+      }
+    </script>
+    {{/if}} {{#if isLocal}}
+    <script type="module">
+      import RefreshRuntime from "{{ VITE_MF_REACT_DOMAIN }}@react-refresh";
+      RefreshRuntime.injectIntoGlobalHook(window);
+      window.$RefreshReg$ = () => {};
+      window.$RefreshSig$ = () => (type) => type;
+      window.__vite_plugin_react_preamble_installed__ = true;
+    </script>
+    {{/if}}
+
+    <template id="single-spa-layout">
+      <single-spa-router>
+        <div id="layout">
+          <main>
+            <route path="vue">
+              <application name="@vite-single-spa/vue1"></application>
+              <application name="@vite-single-spa/vue2"></application>
+            </route>
+            <route default>
+              <application name="@vite-single-spa/react"></application>
+            </route>
+          </main>
+        </div>
+      </single-spa-router>
+    </template>
+  </head>
+
+  <body>
+    <div id="loading">
+      <noscript> You need to enable JavaScript to run this app. </noscript>
+    </div>
+
+    {{#if isLocal}}
+    <script type="module-shim" src="/root-config.ts"></script>
+    {{else}}
+    <script type="module-shim" src="/root-config.js"></script>
+    {{/if}}
+
+    <import-map-overrides-full
+      show-when-local-storage="devtools"
+      dev-libs
+    ></import-map-overrides-full>
+  </body>
+</html>

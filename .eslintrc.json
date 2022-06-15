@@ -1,0 +1,8 @@
+{
+  "root": true,
+  "extends": ["plugin:prettier/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "node": true
+  }
+}

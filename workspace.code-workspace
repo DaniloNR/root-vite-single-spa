@@ -1,0 +1,27 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../vue-vite1"
+    },
+    {
+      "path": "../vue-vite2"
+    },
+    {
+      "path": "../react-vite"
+    }
+  ],
+  "settings": {
+    "editor.rulers": [80, 120],
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "eslint.validate": ["javascript", "javascriptreact", "vue"],
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "volar.codeLens.pugTools": true,
+    "editor.formatOnSave": true,
+    "volar.codeLens.scriptSetupTools": true
+  }
+}

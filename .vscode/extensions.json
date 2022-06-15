@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "Vue.volar",
+    "streetsidesoftware.code-spell-checker",
+    "naumovs.color-highlight",
+    "mikestead.dotenv",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "styled-components.vscode-styled-components",
+    "VisualStudioExptTeam.vscodeintellicode",
+    "EditorConfig.EditorConfig"
+  ],
+  "unwantedRecommendations": ["jcbuisson.vue", "liuji-jim.vue", "znck.vue", "octref.vetur"]
+}
