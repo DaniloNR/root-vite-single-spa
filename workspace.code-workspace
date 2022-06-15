@@ -4,13 +4,13 @@
       "path": "."
     },
     {
-      "path": "../vue-vite1"
+      "path": "../vue-vite-single-spa-1"
     },
     {
-      "path": "../vue-vite2"
+      "path": "../vue-vite-single-spa-2"
     },
     {
-      "path": "../react-vite"
+      "path": "../react-vite-single-spa"
     }
   ],
   "settings": {
